@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.BusInfo">
+
+    <TextView
+        android:id="@+id/tv_busdetails"
+        android:layout_width="262dp"
+        android:layout_height="49dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="67dp"
+        android:layout_marginEnd="67dp"
+        android:layout_marginBottom="590dp"
+        android:gravity="center"
+        android:text="Select Bus Details"
+        android:textSize="28dp" />
+
+    <Spinner
+        android:id="@+id/spin_busNum"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="180dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="470dp"
+        android:gravity="center_horizontal|center_vertical"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_selectBusNo"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="224dp"
+        android:layout_marginBottom="470dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="Bus Number"
+        android:textSize="24sp" />
+
+    <Spinner
+        android:id="@+id/spin_busSource"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="180dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="380dp"
+        android:gravity="center_horizontal|center_vertical"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_selectBusSource"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="224dp"
+        android:layout_marginBottom="380dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="Bus Source"
+        android:textSize="24sp" />
+
+    <Spinner
+        android:id="@+id/spin_busDest"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="180dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="290dp"
+        android:gravity="center_horizontal|center_vertical"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_selectBusDesti"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="224dp"
+        android:layout_marginBottom="290dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="Bus Destination"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/tv_selectBusCountID"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="224dp"
+        android:layout_marginBottom="200dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="Bus Count ID"
+        android:textSize="24sp" />
+
+
+    <TextView
+        android:id="@+id/tv_countID"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="180dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="200dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:textSize="24sp" />
+
+
+    <Button
+        android:id="@+id/bt_selectBus"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="100dp"
+        android:text="Confirm Bus"
+        android:textSize="22dp" />
+
+
+
+</RelativeLayout>

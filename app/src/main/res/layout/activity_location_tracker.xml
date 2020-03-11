@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.LocationTracker">
+
+
+    <TextView
+        android:id="@+id/tv_busNum"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="170dp"
+        android:layout_marginBottom="550dp"
+        android:text="Bus Number : "
+        android:textSize="28sp" />
+
+    <TextView
+        android:id="@+id/tv_DisplayBusNum"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="230dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="550dp"
+        android:textSize="28sp" />
+
+
+    <ProgressBar
+        android:id="@+id/pgB_BusNumber"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="260dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="550dp"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_busSource"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="230dp"
+        android:layout_marginBottom="490dp"
+        android:text="Source : "
+        android:textSize="28sp" />
+
+    <TextView
+        android:id="@+id/tv_DisplayBusSource"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="90dp"
+        android:layout_marginBottom="440dp"
+        android:textSize="28sp" />
+
+
+    <ProgressBar
+        android:id="@+id/pgB_BusSource"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="220dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="495dp"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_busDestination"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="180dp"
+        android:layout_marginBottom="390dp"
+        android:text="Destination : "
+        android:textSize="28sp" />
+
+    <TextView
+        android:id="@+id/tv_DisplayBusDest"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="90dp"
+        android:layout_marginBottom="340dp"
+        android:textSize="28sp" />
+
+    <ProgressBar
+        android:id="@+id/pgB_BusDestination"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="220dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="395dp"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_Count"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="254dp"
+        android:layout_marginBottom="280dp"
+        android:text="Count : "
+        android:textSize="28sp" />
+
+    <TextView
+        android:id="@+id/tv_DisplayCount"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="150dp"
+        android:layout_marginEnd="110dp"
+        android:layout_marginBottom="280dp"
+        android:textSize="28sp" />
+
+
+    <ProgressBar
+        android:id="@+id/pgB_count"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="290dp"
+        android:layout_marginEnd="67dp"
+        android:layout_marginBottom="285dp"
+        android:visibility="visible" />
+
+
+    <TextView
+        android:id="@+id/tv_Latitude"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="200dp"
+        android:layout_marginBottom="210dp"
+        android:text="Latitude :"
+        android:textSize="28sp" />
+
+    <TextView
+        android:id="@+id/tv_LatitudeCoordinates"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="200dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="210dp"
+        android:textSize="28sp" />
+
+
+    <ProgressBar
+        android:id="@+id/pgB_latitude"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="220dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="215dp"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_Longitude"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="200dp"
+        android:layout_marginBottom="145dp"
+        android:text="Longitude :"
+        android:textSize="28sp" />
+
+    <TextView
+        android:id="@+id/tv_LongitudeCoordinates"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="200dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="145dp"
+        android:textSize="28sp" />
+
+    <ProgressBar
+        android:id="@+id/pgB_longitude"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="220dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="150dp"
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/bt_stopBus"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="104dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginBottom="40dp"
+        android:text="Stop Bus"
+        android:textSize="24sp" />
+
+
+</RelativeLayout>

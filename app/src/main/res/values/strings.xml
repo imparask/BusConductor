@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">8-BIT Conductor</string>
+    <string name="select_bus_number">--Select Bus Number--</string>
+</resources>
