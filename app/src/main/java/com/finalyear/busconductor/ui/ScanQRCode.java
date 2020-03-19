@@ -48,15 +48,17 @@ public class ScanQRCode extends AppCompatActivity {
         mQRscanner = findViewById(R.id.sv_QRscanner);
 
 
+
+
+        /*
         String data = "bus2";
         Intent intent = new Intent(getApplicationContext(),BusInfo.class);
 
         intent.putExtra("countID",data);
         startActivity(intent);
 
+         */
 
-
-        /*
         mBarcodeDetector = new BarcodeDetector.Builder(getApplicationContext()).setBarcodeFormats(Barcode.QR_CODE).build();
 
         mCameraSource = new CameraSource.Builder(this, mBarcodeDetector).setRequestedPreviewSize(640, 480).build();
@@ -107,7 +109,6 @@ public class ScanQRCode extends AppCompatActivity {
             }
         });
 
-         */
     }
 
     @Override

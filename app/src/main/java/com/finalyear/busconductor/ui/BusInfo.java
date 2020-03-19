@@ -13,7 +13,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,13 +32,16 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.GeoPoint;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.finalyear.busconductor.ui.StartActivity.exitConstant;
 
@@ -43,7 +49,9 @@ import static com.finalyear.busconductor.ui.StartActivity.exitConstant;
 public class BusInfo extends AppCompatActivity {
 
     private static final String TAG = "BusInfo";
-    private Spinner spinnerBusNum,spinnerBusSource,spinnerBusDest;
+    private ProgressBar progressBar;
+    private AutoCompleteTextView mBusNumber,mBusSource,mBusDestination;
+    private ImageView mNumberDropdown,mSourceDropdown,mDestDropdown;
     private TextView mCountID;
     private FirebaseAuth fAuth;
     private FirebaseFirestore fStore;
@@ -63,6 +71,14 @@ public class BusInfo extends AppCompatActivity {
         fStore = FirebaseFirestore.getInstance();
         mSelectedBus = findViewById(R.id.bt_selectBus);
         mCountID = findViewById(R.id.tv_countID);
+        progressBar = findViewById(R.id.pgb_BusInfo);
+        mBusNumber = findViewById(R.id.actv_busNumber);
+        mNumberDropdown = findViewById(R.id.imgV_Numberdropdown);
+        mBusSource = findViewById(R.id.actv_busSource);
+        mSourceDropdown = findViewById(R.id.imgV_Sourcedropdown);
+        mBusDestination = findViewById(R.id.actv_busDest);
+        mDestDropdown = findViewById(R.id.imgV_Destdropdown);
+
         bus = new Bus();
 
         Intent intent = getIntent();
@@ -70,8 +86,7 @@ public class BusInfo extends AppCompatActivity {
 
         mCountID.setText(countID);
 
-        BusNumberSpinner();
-        BusStopSpinner();
+        BusNumberList();
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -165,97 +180,115 @@ public class BusInfo extends AppCompatActivity {
         });
     }
 
-    private void BusStopSpinner(){
+    private void BusStopList(final String busNo){
 
-        spinnerBusDest = (Spinner) findViewById(R.id.spin_busDest);
+        progressBar.setVisibility(View.VISIBLE);
+
         final List<String> busdestiations= new ArrayList<>();
-        final ArrayAdapter<String> adapter1 = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,busdestiations);
-        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerBusDest.setAdapter(adapter1);
+        final ArrayAdapter<String> adapter1 = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_list_item_1,busdestiations);
+        adapter1.setDropDownViewResource(android.R.layout.simple_list_item_1);
+        mBusSource.setAdapter(adapter1);
+        mBusSource.setThreshold(1);
 
-        spinnerBusSource = (Spinner) findViewById(R.id.spin_busSource);
         final List<String> bussources= new ArrayList<>();
-        final ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_item,bussources);
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerBusSource.setAdapter(adapter2);
+        final ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,bussources);
+        adapter2.setDropDownViewResource(android.R.layout.simple_list_item_1);
+        mBusDestination.setAdapter(adapter2);
+        mBusDestination.setThreshold(1);
 
-        fStore.collection("BusStop").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        fStore.collection("BusRoute").document(busNo).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if(task.isSuccessful()){
                     if(task.getResult() != null) {
-                            for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
-                            String busStop = documentSnapshot.getString("busStop");
-                            busdestiations.add(busStop);
-                            bussources.add(busStop);
+                        Map<String,Object> data = task.getResult().getData();
+
+                        if(data != null) {
+                            for (int i = 1; i <= data.size(); i++) {
+                                String stop = data.get("busStop" + i).toString();
+                                busdestiations.add(stop);
+                                bussources.add(stop);
+                            }
+                        }
+                        else{
+                            Toast.makeText(getApplicationContext(),"Route information not available for "+busNo,Toast.LENGTH_LONG).show();
                         }
                     }
                     adapter1.notifyDataSetChanged();
                     adapter2.notifyDataSetChanged();
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
             }
         });
 
-        spinnerBusDest.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String busDestination = (String)parent.getSelectedItem();
-                bus.setBusDestination(busDestination);
-            }
 
+        mSourceDropdown.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
+            public void onClick(View v) {
+                mBusSource.showDropDown();
             }
         });
 
-        spinnerBusSource.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+        mDestDropdown.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String busSource = (String)parent.getSelectedItem();
-                bus.setBusSource(busSource);
+            public void onClick(View v) {
+                mBusDestination.showDropDown();
             }
+        });
 
+        mBusDestination.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String busDestination = mBusDestination.getText().toString();
+                bus.setBusDestination(busDestination);
+            }
+        });
 
+        mBusSource.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String busSource = mBusSource.getText().toString();
+                bus.setBusSource(busSource);
             }
         });
 
     }
 
-    private void BusNumberSpinner(){
-        spinnerBusNum = (Spinner) findViewById(R.id.spin_busNum);
+    private void BusNumberList(){
+
         final List<String> busnumbers = new ArrayList<>();
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_item,busnumbers);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerBusNum.setAdapter(adapter);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,busnumbers);
+        adapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
+        mBusNumber.setAdapter(adapter);
+        mBusNumber.setThreshold(1);
 
         fStore.collection("BusNumber").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
-                    if(task.getResult() != null){
-                        for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
-                            String busnumber = documentSnapshot.getString("busNumber");
-                            busnumbers.add(busnumber);
-                        }
+                    for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
+                        String busnumber = documentSnapshot.getString("busNumber");
+                        busnumbers.add(busnumber);
                     }
                     adapter.notifyDataSetChanged();
                 }
             }
         });
 
-        spinnerBusNum.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        mNumberDropdown.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String busNo = (String)parent.getSelectedItem();
-                bus.setBusNumber(busNo);
+            public void onClick(View v) {
+                mBusNumber.showDropDown();
             }
+        });
 
+        mBusNumber.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String busNo = mBusNumber.getText().toString();
+                bus.setBusNumber(busNo);
+                BusStopList(busNo);
             }
         });
     }
