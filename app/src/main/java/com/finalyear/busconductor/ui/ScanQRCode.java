@@ -47,9 +47,6 @@ public class ScanQRCode extends AppCompatActivity {
 
         mQRscanner = findViewById(R.id.sv_QRscanner);
 
-
-
-
         /*
         String data = "bus2";
         Intent intent = new Intent(getApplicationContext(),BusInfo.class);
